@@ -4,9 +4,23 @@
         <item name="colorPrimaryVariant">@color/pink</item>
         <item name="colorOnPrimary">@color/red</item>
         <item name="colorSecondary">@color/red</item>
-        <item name="colorSecondaryVariant">@color/red</item>
+        <item name="colorSecondaryVariant">@color/red_2</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="floatingActionButtonStyle">@style/FloatingActionButtonStyle</item>
     </style>
 
     <style name="Theme.CurrencyConverter" parent="Base.Theme.CurrencyConverter" />
+
+    <style name="FloatingActionButtonStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        shapeAppearanceOverlay="@style/FabShapeStyle"
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="backgroundTint">@color/red</item>
+        <item name="tint">@color/red</item>
+        <item name="rippleColor">@color/red</item>
+    </style>
+
+    <style name="FabShapeStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
