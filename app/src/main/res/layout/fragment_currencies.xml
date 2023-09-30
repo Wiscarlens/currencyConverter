@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,11 +14,11 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp">
 
-        <ImageView
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:backgroundTint="#39812C"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/red"
             android:src="@drawable/baseline_arrow_back_24" />
 
         <LinearLayout
@@ -52,9 +53,11 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/currencies_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="40dp"
+                tools:listitem="@layout/currency_design"/>
 
         </LinearLayout>
 
