@@ -38,7 +38,10 @@
                 <TextView
                     android:id="@+id/local_currency_amount"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp" />
+                    android:layout_height="100dp"
+                    android:textColor="@color/white"
+                    android:textSize="70sp"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
@@ -57,6 +60,7 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/local_currency_one"
                         style="@style/Widget.Material3.Button.IconButton.Filled"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
@@ -68,6 +72,7 @@
                         app:backgroundTint="@color/red_2"/>
 
                     <Button
+                        android:id="@+id/local_currency_two"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_margin="20dp"
@@ -79,6 +84,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_three"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -98,6 +104,7 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/local_currency_four"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -109,6 +116,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_five"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -120,6 +128,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_six"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -139,6 +148,7 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/local_currency_seven"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -150,6 +160,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_eight"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -161,6 +172,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_nine"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -180,6 +192,7 @@
                     android:orientation="horizontal">
 
                     <Button
+                        android:id="@+id/local_currency_decimal"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
@@ -191,6 +204,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_zero"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_margin="20dp"
@@ -202,6 +216,7 @@
                         app:backgroundTint="@color/red_2" />
 
                     <Button
+                        android:id="@+id/local_currency_check"
                         style="@style/Widget.Material3.Button.IconButton.Filled"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
@@ -222,6 +237,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/local_currency_swipeUp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:scaleType="center"
@@ -230,7 +246,6 @@
                     android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
-
 
 
         </LinearLayout>
