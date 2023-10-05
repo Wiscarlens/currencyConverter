@@ -14,15 +14,9 @@ public class Currency {
         return currencyName;
     }
 
-    public void setCurrencyName(String currencyName) {
-        this.currencyName = currencyName;
-    }
-
     public String getCurrencySymbol() {
         return currencySymbol;
     }
 
-    public void setCurrencySymbol(String currencySymbol) {
-        this.currencySymbol = currencySymbol;
-    }
+
 }

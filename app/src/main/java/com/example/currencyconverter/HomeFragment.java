@@ -62,8 +62,29 @@ public class HomeFragment extends Fragment {
             FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            ForeignCurrency foreignCurrency = new ForeignCurrency();
+            ForeignCurrencyFragment foreignCurrency = new ForeignCurrencyFragment();
             fragmentTransaction.replace(R.id.fragment_container, foreignCurrency);
+            fragmentTransaction.commit();
+        });
+
+        ISO_code.setOnClickListener(v -> {
+
+            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            ListCurrency currenciesFragment = new ListCurrency();
+            fragmentTransaction.replace(R.id.fragment_container, currenciesFragment);
+
+            fragmentTransaction.commit();
+        });
+
+        ISO_code2.setOnClickListener(v -> {
+            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            ListCurrency currenciesFragment = new ListCurrency();
+            fragmentTransaction.replace(R.id.fragment_container, currenciesFragment);
+
             fragmentTransaction.commit();
         });
 

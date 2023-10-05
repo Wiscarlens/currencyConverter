@@ -1,19 +1,30 @@
 package com.example.currencyconverter;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ForeignCurrency extends Fragment {
+public class ForeignCurrencyFragment extends Fragment {
 
+    private FragmentActivity fragmentActivity;
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        fragmentActivity = (FragmentActivity) context;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -33,11 +44,10 @@ public class ForeignCurrency extends Fragment {
         TextView decimal = view.findViewById(R.id.foreign_currency_decimal);
         TextView check = view.findViewById(R.id.foreign_currency_check);
 
+        ImageView closeButton = view.findViewById(R.id.foreign_currency_swipeUp);
+
 
         one.setOnClickListener(v -> {
-
-
-            //amount.setText(updateAmount(amount.getText().toString(), 1));
             amount.setText(amount.getText() + "1");
         });
 
@@ -83,6 +93,15 @@ public class ForeignCurrency extends Fragment {
 
         check.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Check", Toast.LENGTH_SHORT).show();
+        });
+
+        closeButton.setOnClickListener(v -> {
+            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            HomeFragment homeFragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.fragment_container, homeFragment);
+            fragmentTransaction.commit();
         });
 
     }

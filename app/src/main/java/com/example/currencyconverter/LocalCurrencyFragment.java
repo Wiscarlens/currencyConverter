@@ -1,26 +1,31 @@
 package com.example.currencyconverter;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LocalCurrencyFragment extends Fragment {
 
-
-
+    private FragmentActivity fragmentActivity;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        fragmentActivity = (FragmentActivity) context;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -40,11 +45,9 @@ public class LocalCurrencyFragment extends Fragment {
         TextView decimal = view.findViewById(R.id.local_currency_decimal);
         TextView check = view.findViewById(R.id.local_currency_check);
 
-        
+        ImageView closeButton = view.findViewById(R.id.local_currency_swipeUp);
+
         one.setOnClickListener(v -> {
-
-
-            //amount.setText(updateAmount(amount.getText().toString(), 1));
             amount.setText(amount.getText() + "1");
         });
         
@@ -89,9 +92,18 @@ public class LocalCurrencyFragment extends Fragment {
         });
         
         check.setOnClickListener(v -> {
+            // Check if amount is not equal to null
+
+            // Copy amount data and transfer to the other fragment
+
+            // Open the other fragment
+            openFragment(fragmentActivity, new HomeFragment());
             Toast.makeText(getContext(), "Check", Toast.LENGTH_SHORT).show();
         });
 
+        closeButton.setOnClickListener(v -> {
+            openFragment(fragmentActivity, new HomeFragment());
+        });
 
     }
 
@@ -100,6 +112,13 @@ public class LocalCurrencyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_local_currency, container, false);
+    }
+
+    public static void openFragment(FragmentActivity fragmentActivity, Fragment fragment) {
+        FragmentManager fragmentManager = fragmentActivity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.commit();
     }
 
     public static String updateAmount(String amount, int intValue) {
