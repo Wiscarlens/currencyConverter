@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,12 +94,27 @@ public class LocalCurrencyFragment extends Fragment {
         
         check.setOnClickListener(v -> {
             // Check if amount is not equal to null
+            if(amount.getText().toString().equals("")) {
+                Toast.makeText(getContext(), "Please enter an amount", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                // Check if amount is a valid number
+                try {
+                    Double.parseDouble(amount.getText().toString());
+                } catch (NumberFormatException e) {
+                    amount.setText(null);
+                    Toast.makeText(getContext(), "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
 
-            // Copy amount data and transfer to the other fragment
+            // Copy amount data and transfer to the home fragment
+            Bundle amountBundle = new Bundle();
+            amountBundle.putDouble("amount", Double.parseDouble(amount.getText().toString()));
+            getParentFragmentManager().setFragmentResult("amountData", amountBundle);
 
             // Open the other fragment
             openFragment(fragmentActivity, new HomeFragment());
-            Toast.makeText(getContext(), "Check", Toast.LENGTH_SHORT).show();
         });
 
         closeButton.setOnClickListener(v -> {

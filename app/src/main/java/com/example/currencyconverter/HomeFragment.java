@@ -42,11 +42,19 @@ public class HomeFragment extends Fragment {
         TextView currencySign2 = view.findViewById(R.id.currencySignTV2);
         TextView currencyName2 = view.findViewById(R.id.currencyNameTV2);
 
-
         amount.setText("1.00");
 
-        amount.setOnClickListener(v -> {
+        // Receiving input amount from LocalCurrencyFragment
+        getParentFragmentManager().setFragmentResultListener(
+                "amountData",
+                this,
+                (requestKey, result) -> {
+                    double data = result.getDouble("amount");
+                    amount.setText(String.valueOf(data));
+                });
 
+
+        amount.setOnClickListener(v -> {
             FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
