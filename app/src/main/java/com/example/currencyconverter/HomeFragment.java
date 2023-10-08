@@ -1,7 +1,5 @@
 package com.example.currencyconverter;
 
-import static com.example.currencyconverter.ExchangeAPI.sendLiveRequest;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,16 +60,25 @@ public class HomeFragment extends Fragment {
         switchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("HomeFragment", "Before API Request");
+//                Log.d("HomeFragment", "Before API Request");
+//
+//                try {
+//                    Log.i("Exchange Rate", String.valueOf(sendLiveRequest("USD", "EUR")));
+//                    //sendLiveRequest("USD", "EUR");
+//                } catch (JSONException e) {
+//                    Log.e("HomeFragment", "API Request Error: " + e.getMessage());
+//                }
+//
+//                Log.d("HomeFragment", "After API Request");
 
+                Double temp = null;
                 try {
-                    Log.i("Exchange Rate", String.valueOf(sendLiveRequest("USD", "EUR")));
-                    //sendLiveRequest("USD", "EUR");
+                    temp = ExchangeAPI.sendLiveRequest("USD", "EUR");
                 } catch (JSONException e) {
-                    Log.e("HomeFragment", "API Request Error: " + e.getMessage());
+                    throw new RuntimeException(e);
                 }
 
-                Log.d("HomeFragment", "After API Request");
+                Log.i("Exchange Rate", String.valueOf(temp));
             }
         });
 
