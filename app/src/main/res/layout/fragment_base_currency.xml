@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,11 +14,12 @@
         app:cardCornerRadius="15dp"
         app:cardElevation="20dp">
 
-        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:context=".ForeignCurrencyFragment">
+            android:background="@color/red"
+            tools:context=".BaseCurrencyFragment">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,15 +34,19 @@
                     android:text="Amount"
                     android:textSize="12sp"
                     android:gravity="center"
-                    android:textColor="@color/red" />
+                    android:textColor="@color/pink" />
 
-                <TextView
-                    android:id="@+id/foreign_amountTV"
+                <EditText
+                    android:id="@+id/local_currency_amount"
+                    style="@style/Widget.Material3.AutoCompleteTextView.FilledBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:textColor="@color/red_2"
-                    android:textSize="70sp"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:hint="0.00"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="65sp" />
 
             </LinearLayout>
 
@@ -50,7 +56,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:layout_weight="2">
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,31 +65,40 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/foreign_currency_one"
+                        android:id="@+id/local_currency_one"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
+                        android:background="@drawable/circular_button_background"
                         android:text="1"
-                        android:textSize="18sp" />
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:backgroundTint="@color/red_2"/>
 
                     <Button
-                        android:id="@+id/foreign_currency_two"
+                        android:id="@+id/local_currency_two"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_margin="20dp"
                         android:background="@drawable/circular_button_background"
                         android:text="2"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_three"
+                        android:id="@+id/local_currency_three"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="3"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                 </LinearLayout>
 
@@ -94,31 +109,40 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/foreign_currency_four"
+                        android:id="@+id/local_currency_four"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="4"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_five"
+                        android:id="@+id/local_currency_five"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="5"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_six"
+                        android:id="@+id/local_currency_six"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="6"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                 </LinearLayout>
 
@@ -129,31 +153,40 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/foreign_currency_seven"
+                        android:id="@+id/local_currency_seven"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="7"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_eight"
+                        android:id="@+id/local_currency_eight"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="8"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_nine"
+                        android:id="@+id/local_currency_nine"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="9"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                 </LinearLayout>
 
@@ -164,33 +197,39 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/foreign_currency_decimal"
+                        android:id="@+id/local_currency_decimal"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
                         android:text="."
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_zero"
+                        android:id="@+id/local_currency_zero"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@drawable/circular_button_background"
                         android:layout_margin="20dp"
+                        android:background="@drawable/circular_button_background"
                         android:text="0"
-                        android:textSize="18sp" />
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        style="@style/Widget.Material3.Button.IconButton.Filled"
+                        app:backgroundTint="@color/red_2" />
 
                     <Button
-                        android:id="@+id/foreign_currency_check"
+                        android:id="@+id/local_currency_check"
                         style="@style/Widget.Material3.Button.IconButton.Filled"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_margin="20dp"
-                        app:backgroundTint="@null"
-                        android:background="@drawable/circular_check_button_background"
+                        android:background="@drawable/circular_button_background"
                         android:drawableBottom="@drawable/baseline_check_24"
-                        android:drawableTint="@color/pink" />
+                        android:drawableTint="@color/red"
+                        app:backgroundTint="@color/white" />
 
                 </LinearLayout>
 
@@ -203,17 +242,15 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/foreign_currency_swipeUp"
+                    android:id="@+id/local_currency_swipeUp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:scaleType="center"
-                    android:clickable="true"
                     android:src="@drawable/baseline_keyboard_arrow_down_24"
-                    app:tint="@color/red"
+                    app:tint="@color/pink"
                     android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
-
 
 
         </LinearLayout>

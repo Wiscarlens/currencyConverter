@@ -10,15 +10,15 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LocalCurrencyFragment extends Fragment {
+public class BaseCurrencyFragment extends Fragment {
 
     private FragmentActivity fragmentActivity;
     @Override
@@ -32,7 +32,7 @@ public class LocalCurrencyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        TextView amount = view.findViewById(R.id.local_currency_amount);
+        EditText amount = view.findViewById(R.id.local_currency_amount);
         TextView one = view.findViewById(R.id.local_currency_one);
         TextView two = view.findViewById(R.id.local_currency_two);
         TextView three = view.findViewById(R.id.local_currency_three);
@@ -127,7 +127,7 @@ public class LocalCurrencyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_local_currency, container, false);
+        return inflater.inflate(R.layout.fragment_base_currency, container, false);
     }
 
     public static void openFragment(FragmentActivity fragmentActivity, Fragment fragment) {

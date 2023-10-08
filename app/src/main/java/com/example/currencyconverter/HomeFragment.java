@@ -1,7 +1,14 @@
 package com.example.currencyconverter;
 
+import static com.example.currencyconverter.ExchangeAPI.sendLiveRequest;
+
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,12 +17,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
 
 public class HomeFragment extends Fragment {
     private FragmentActivity fragmentActivity;
@@ -44,7 +48,7 @@ public class HomeFragment extends Fragment {
 
         amount.setText("1.00");
 
-        // Receiving input amount from LocalCurrencyFragment
+        // Receiving input amount from BaseCurrencyFragment
         getParentFragmentManager().setFragmentResultListener(
                 "amountData",
                 this,
@@ -54,11 +58,29 @@ public class HomeFragment extends Fragment {
                 });
 
 
+
+        switchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("HomeFragment", "Before API Request");
+
+                try {
+                    Log.i("Exchange Rate", String.valueOf(sendLiveRequest("USD", "EUR")));
+                    //sendLiveRequest("USD", "EUR");
+                } catch (JSONException e) {
+                    Log.e("HomeFragment", "API Request Error: " + e.getMessage());
+                }
+
+                Log.d("HomeFragment", "After API Request");
+            }
+        });
+
+
         amount.setOnClickListener(v -> {
             FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            LocalCurrencyFragment localCurrency = new LocalCurrencyFragment();
+            BaseCurrencyFragment localCurrency = new BaseCurrencyFragment();
             fragmentTransaction.replace(R.id.fragment_container, localCurrency);
             fragmentTransaction.commit();
         });
@@ -70,7 +92,7 @@ public class HomeFragment extends Fragment {
             FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            ForeignCurrencyFragment foreignCurrency = new ForeignCurrencyFragment();
+            ConvertedCurrencyFragment foreignCurrency = new ConvertedCurrencyFragment();
             fragmentTransaction.replace(R.id.fragment_container, foreignCurrency);
             fragmentTransaction.commit();
         });

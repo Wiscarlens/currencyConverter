@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ForeignCurrencyFragment extends Fragment {
+public class ConvertedCurrencyFragment extends Fragment {
 
     private FragmentActivity fragmentActivity;
     @Override
@@ -110,6 +110,6 @@ public class ForeignCurrencyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_foreign_currency, container, false);
+        return inflater.inflate(R.layout.fragment_converted_currency, container, false);
     }
 }
