@@ -57,29 +57,15 @@ public class HomeFragment extends Fragment {
 
 
 
-        switchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Log.d("HomeFragment", "Before API Request");
-//
-//                try {
-//                    Log.i("Exchange Rate", String.valueOf(sendLiveRequest("USD", "EUR")));
-//                    //sendLiveRequest("USD", "EUR");
-//                } catch (JSONException e) {
-//                    Log.e("HomeFragment", "API Request Error: " + e.getMessage());
-//                }
-//
-//                Log.d("HomeFragment", "After API Request");
+        switchButton.setOnClickListener(v -> {
 
-                Double temp = null;
-                try {
-                    temp = ExchangeAPI.sendLiveRequest("USD", "EUR");
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-
+            try {
+                double temp = ExchangeAPI.sendLiveRequest("USD", "EUR");
                 Log.i("Exchange Rate", String.valueOf(temp));
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
             }
+
         });
 
 

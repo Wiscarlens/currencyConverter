@@ -1,10 +1,9 @@
 package com.example.currencyconverter;
 
 import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,8 +26,6 @@ public class ExchangeAPI {
         // Build the URL
         String url = BASE_URL + ENDPOINT + "?access_key=" + ACCESS_KEY;
 
-//        JSONObject exchangeRates = null;
-
         JSONObject exchangeRates = null;
         try {
             Request request = new Request.Builder()
@@ -45,7 +42,7 @@ public class ExchangeAPI {
             }
 
         } catch (Exception e) {
-            Log.e("Exception", Objects.requireNonNull(e.getMessage()));
+            e.printStackTrace();
         }
 
         if (exchangeRates != null) {
@@ -53,6 +50,5 @@ public class ExchangeAPI {
         } else {
             return 0.0; // Handle error case appropriately
         }
-//        return 0.0;
     }
 }
