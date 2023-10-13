@@ -19,6 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
 
+import java.text.NumberFormat;
+
 public class HomeFragment extends Fragment {
     private FragmentActivity fragmentActivity;
 
@@ -44,6 +46,7 @@ public class HomeFragment extends Fragment {
         TextView currencySign2 = view.findViewById(R.id.currencySignTV2);
         TextView currencyName2 = view.findViewById(R.id.currencyNameTV2);
 
+
         amount.setText("1.00");
 
         // Receiving input amount from BaseCurrencyFragment
@@ -52,19 +55,14 @@ public class HomeFragment extends Fragment {
                 this,
                 (requestKey, result) -> {
                     double data = result.getDouble("amount");
-                    amount.setText(String.valueOf(data));
+                    String amountFormatted = Utils.formatDouble(data);
+                    amount.setText(amountFormatted);
                 });
 
 
 
         switchButton.setOnClickListener(v -> {
 
-            try {
-                double temp = ExchangeAPI.sendLiveRequest("USD", "EUR");
-                Log.i("Exchange Rate", String.valueOf(temp));
-            } catch (JSONException e) {
-                throw new RuntimeException(e);
-            }
 
         });
 
@@ -78,7 +76,34 @@ public class HomeFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        amount2.setText("1.00");
+
+        final String baseCurrency = "USD";
+        final String targetCurrency = "EUR";
+        ExchangeAPI.sendLiveRequest(baseCurrency, targetCurrency, new ExchangeAPI.ExchangeCallback() {
+            @Override
+            public void onSuccess(double rate) {
+                String rateString = Utils.formatDouble(rate * Double.parseDouble(amount.getText().toString()));
+
+                amount2.setText(rateString);
+                Log.d("Exchange Rate", rateString);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                // Handle the error here, 'e' contains the exception
+                Log.e("Error", e.toString());
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 
         amount2.setOnClickListener(v -> {
 
