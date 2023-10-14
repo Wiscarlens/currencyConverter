@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -24,17 +25,18 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:clickable="true"
+                android:contentDescription="@string/switch_currency"
                 android:focusable="true"
                 android:rotation="270"
                 android:src="@drawable/baseline_compare_arrows_24"
                 app:borderWidth="5dp"
-                app:rippleColor="@color/red"
                 app:fabCustomSize="100dp"
-                app:maxImageSize="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxImageSize="60dp"
+                app:rippleColor="@color/red" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -55,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
-                    android:text="USD"
+                    android:text="@string/usd"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -71,7 +73,7 @@
                         android:id="@+id/amountTV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="500.00"
+                        android:text="@string/default_dollar_amount"
                         android:textColor="@color/white"
                         android:textSize="70sp" />
 
@@ -80,22 +82,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="$"
+                        android:text="@string/dollar_sign"
                         android:textColor="@color/pink"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
-
 
                 <TextView
                     android:id="@+id/currencyNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="United State Dollar"
+                    android:text="@string/united_state_dollar"
                     android:textColor="@color/pink"
-                    android:textSize="20sp" />
-
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
 
@@ -119,9 +121,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="EUR"
+                    android:text="@string/eur"
                     android:textColor="@color/red_2"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -134,18 +137,20 @@
                         android:id="@+id/amountTV2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="468.80"
+                        android:gravity="center"
+                        android:text="@string/default_euro_amount"
                         android:textColor="@color/red_2"
                         android:textSize="70sp"
-                        android:gravity="center"/>
+                        tools:ignore="TextContrastCheck" />
 
                     <TextView
                         android:id="@+id/currencySignTV2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="€"
+                        android:text="@string/euro_sign"
                         android:textColor="@color/red_2"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:ignore="TextContrastCheck" />
 
                 </LinearLayout>
 
@@ -153,9 +158,10 @@
                     android:id="@+id/currencyNameTV2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Euro"
+                    android:text="@string/euro"
                     android:textColor="@color/red_2"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
 

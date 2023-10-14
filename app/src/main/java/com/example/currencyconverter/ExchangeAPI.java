@@ -19,32 +19,29 @@ public class ExchangeAPI {
         // Build the URL
         String url = BASE_URL + ENDPOINT + "?access_key=" + ACCESS_KEY;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                JSONObject exchangeRates;
+        new Thread(() -> {
+            JSONObject exchangeRates;
 
-                try {
-                    Request request = new Request.Builder()
-                            .url(url)
-                            .build();
+            try {
+                Request request = new Request.Builder()
+                        .url(url)
+                        .build();
 
-                    Response response = httpClient.newCall(request).execute();
-                    ResponseBody responseBody = response.body();
+                Response response = httpClient.newCall(request).execute();
+                ResponseBody responseBody = response.body();
 
-                    // Parse the JSON response
-                    assert responseBody != null;
-                    exchangeRates = new JSONObject(responseBody.string());
+                // Parse the JSON response
+                assert responseBody != null;
+                exchangeRates = new JSONObject(responseBody.string());
 
-                    if (callback != null) {
-                        double rate = exchangeRates.getJSONObject("quotes").getDouble(baseValue + convertedValue);
-                        callback.onSuccess(rate);
-                    }
-                } catch (Exception e) {
-                    Log.e("Error", e.toString());
-                    if (callback != null) {
-                        callback.onError(e);
-                    }
+                if (callback != null) {
+                    double rate = exchangeRates.getJSONObject("quotes").getDouble(baseValue + convertedValue);
+                    callback.onSuccess(rate);
+                }
+            } catch (Exception e) {
+                Log.e("Error", e.toString());
+                if (callback != null) {
+                    callback.onError(e);
                 }
             }
         }).start();

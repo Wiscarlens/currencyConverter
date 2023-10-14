@@ -59,10 +59,7 @@ public class HomeFragment extends Fragment {
                     amount.setText(amountFormatted);
                 });
 
-
-
         switchButton.setOnClickListener(v -> {
-
 
         });
 
@@ -94,16 +91,6 @@ public class HomeFragment extends Fragment {
                 Log.e("Error", e.toString());
             }
         });
-
-
-
-
-
-
-
-
-
-
 
         amount2.setOnClickListener(v -> {
 
