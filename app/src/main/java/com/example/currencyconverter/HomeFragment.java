@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +18,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.json.JSONException;
-
-import java.text.NumberFormat;
 
 public class HomeFragment extends Fragment {
     private FragmentActivity fragmentActivity;
@@ -60,17 +58,13 @@ public class HomeFragment extends Fragment {
                 });
 
         switchButton.setOnClickListener(v -> {
-
+            Toast.makeText(fragmentActivity, "Test", Toast.LENGTH_SHORT).show();
         });
 
 
         amount.setOnClickListener(v -> {
-            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            BaseCurrencyFragment localCurrency = new BaseCurrencyFragment();
-            fragmentTransaction.replace(R.id.fragment_container, localCurrency);
-            fragmentTransaction.commit();
+            BaseCurrencyFragment BaseCurrencyFragment = new BaseCurrencyFragment();
+            replaceFragment(BaseCurrencyFragment);
         });
 
 
@@ -79,10 +73,11 @@ public class HomeFragment extends Fragment {
         ExchangeAPI.sendLiveRequest(baseCurrency, targetCurrency, new ExchangeAPI.ExchangeCallback() {
             @Override
             public void onSuccess(double rate) {
-                String rateString = Utils.formatDouble(rate * Double.parseDouble(amount.getText().toString()));
-
-                amount2.setText(rateString);
-                Log.d("Exchange Rate", rateString);
+                fragmentActivity.runOnUiThread(() -> {
+                    String rateString = Utils.formatDouble(rate * Double.parseDouble(amount.getText().toString()));
+                    amount2.setText(rateString);
+                    Log.d("Exchange Rate", rateString);
+                });
             }
 
             @Override
@@ -92,42 +87,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        amount2.setOnClickListener(v -> {
+        amount2.setOnClickListener(v -> replaceFragment(new TargetCurrencyFragment()));
 
-            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ISO_code.setOnClickListener(v -> replaceFragment(new ListCurrency()));
 
-            ConvertedCurrencyFragment foreignCurrency = new ConvertedCurrencyFragment();
-            fragmentTransaction.replace(R.id.fragment_container, foreignCurrency);
-            fragmentTransaction.commit();
-        });
-
-        ISO_code.setOnClickListener(v -> {
-
-            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            ListCurrency currenciesFragment = new ListCurrency();
-            fragmentTransaction.replace(R.id.fragment_container, currenciesFragment);
-
-            fragmentTransaction.commit();
-        });
-
-        ISO_code2.setOnClickListener(v -> {
-            FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            ListCurrency currenciesFragment = new ListCurrency();
-            fragmentTransaction.replace(R.id.fragment_container, currenciesFragment);
-
-            fragmentTransaction.commit();
-        });
+        ISO_code2.setOnClickListener(v -> replaceFragment(new ListCurrency()));
 
     }
 
+    private void replaceFragment(Fragment newFragment) {
+        FragmentManager fragmentManager =  fragmentActivity.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragment_container, newFragment);
+        fragmentTransaction.commit();
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }

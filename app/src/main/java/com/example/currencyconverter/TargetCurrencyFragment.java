@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ConvertedCurrencyFragment extends Fragment {
+public class TargetCurrencyFragment extends Fragment {
 
     private FragmentActivity fragmentActivity;
     @Override
