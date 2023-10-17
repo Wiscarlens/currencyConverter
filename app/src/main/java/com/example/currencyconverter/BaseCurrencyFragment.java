@@ -27,7 +27,6 @@ public class BaseCurrencyFragment extends Fragment {
         fragmentActivity = (FragmentActivity) context;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -137,27 +136,4 @@ public class BaseCurrencyFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    public static String updateAmount(String amount, int intValue) {
-        // Split the input amount into the integer and fractional parts
-        String[] parts = amount.split("\\.");
-
-        // Extract the integer and fractional parts
-        String integerPart = parts[0];
-        String fractionalPart = parts[1];
-
-        // Convert the fractional part to an integer
-        int fractionalValue = Integer.parseInt(fractionalPart);
-
-        // Update the fractional value based on the input integer
-        fractionalValue += intValue;
-
-        // Ensure the fractional value is within the range [0, 99]
-        fractionalValue = Math.min(99, Math.max(0, fractionalValue));
-
-        // Convert the updated fractional value back to a string
-        fractionalPart = String.format("%02d", fractionalValue);
-
-        // Update the amount with the new fractional part
-        return integerPart + "." + fractionalPart;
-    }
 }

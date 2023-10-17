@@ -49,13 +49,12 @@ public class ListCurrency extends Fragment {
 
         currencyArrayList.add(new Currency("United States Dollar", "USD"));
         currencyArrayList.add(new Currency("Euro", "EUR"));
+        currencyArrayList.add(new Currency("Canada", "CAD"));
         currencyArrayList.add(new Currency("Gourde", "HTG"));
 
         CurrencyAdapter currencyAdapter = new CurrencyAdapter(currencyArrayList, getContext());
 
-
         recyclerView.setAdapter(currencyAdapter);
-
 
         backButton.setOnClickListener(v -> {
             FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
