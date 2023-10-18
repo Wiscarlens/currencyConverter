@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class ListCurrency extends Fragment {
+public class ListCurrency extends Fragment implements CurrencySelectionListener{
     private ArrayList<Currency> currencyArrayList = new ArrayList<>();
 
     @Override
@@ -54,6 +55,9 @@ public class ListCurrency extends Fragment {
 
         CurrencyAdapter currencyAdapter = new CurrencyAdapter(currencyArrayList, getContext());
 
+        // Pass the CurrencySelectionListener interface to the CurrencyAdapter.
+        currencyAdapter.setCurrencySelectionListener(this);
+
         recyclerView.setAdapter(currencyAdapter);
 
         backButton.setOnClickListener(v -> {
@@ -66,5 +70,20 @@ public class ListCurrency extends Fragment {
         });
 
 
+    }
+
+    @Override
+    public void onCurrencySelected(Currency currency) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("currency", (Parcelable) currency);
+
+        HomeFragment homeFragment = new HomeFragment();
+        homeFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager =  getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragment_container, homeFragment);
+        fragmentTransaction.commit();
     }
 }

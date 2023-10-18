@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
-public class HomeFragment extends Fragment implements CurrencyAdapter.CurrencySelectionListener {
+public class HomeFragment extends Fragment {
     private FragmentActivity fragmentActivity;
     private String baseCurrency = "USD";
     private String targetCurrency = "EUR";
@@ -110,10 +110,4 @@ public class HomeFragment extends Fragment implements CurrencyAdapter.CurrencySe
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    @Override
-    public void onCurrencySelected(String currencySymbol) {
-        // Update the baseCurrency with the selected currencySymbol
-        baseCurrency = currencySymbol;
-        Toast.makeText(getActivity(), "You selected " + currencySymbol, Toast.LENGTH_SHORT).show();
-    }
 }

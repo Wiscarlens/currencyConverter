@@ -14,22 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.DesignViewHolder> {
+public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.DesignViewHolder> implements CurrencySelectionListener{
     private final ArrayList<Currency> currencyArrayList;
     private Context context;
-
-    private CurrencySelectionListener listener;
-
-    public CurrencyAdapter(ArrayList<Currency> currencyArrayList, Context context, CurrencySelectionListener listener) {
-        this.currencyArrayList = currencyArrayList;
-        this.context = context;
-        this.listener = listener;
-    }
 
     public CurrencyAdapter(ArrayList<Currency> currencyArrayList, Context context) {
         this.currencyArrayList = currencyArrayList;
         this.context = context;
-        this.listener = null; // Set a default listener as null
     }
 
     @NonNull
@@ -47,15 +38,10 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Design
         holder.currencyNameTV_design.setText(currencyArrayList.get(position).getCurrencyName());
         holder.currencySymbolTV_design.setText(currencyArrayList.get(position).getCurrencySymbol());
 
+        Currency currencySymbol = currencyArrayList.get(position);
+
         holder.linearLayout.setOnClickListener(v -> {
-            // Copy amount data and transfer to the home fragment
-            String currencySymbol = currencyArrayList.get(position).getCurrencySymbol();
-            if (listener != null) {
-                listener.onCurrencySelected(currencySymbol);
-            } else {
-                // Handle the case where the listener is null
-                Toast.makeText(context, "Listener is not set", Toast.LENGTH_SHORT).show();
-            }
+            onCurrencySelected(currencySymbol);
         });
     }
 
@@ -64,9 +50,15 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.Design
         return currencyArrayList.size();
     }
 
-    public interface CurrencySelectionListener {
-        void onCurrencySelected(String currencySymbol);
+    @Override
+    public void onCurrencySelected(Currency currency) {
+
     }
+
+    public void setCurrencySelectionListener(CurrencySelectionListener currencySelectionListener) {
+//        this.currencySelectionListener = currencySelectionListener;
+    }
+
 
     public static class DesignViewHolder extends RecyclerView.ViewHolder {
         private final LinearLayout linearLayout = itemView.findViewById(R.id.currencyNameCodeLL_design);
