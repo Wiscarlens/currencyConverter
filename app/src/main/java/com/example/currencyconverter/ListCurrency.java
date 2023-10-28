@@ -52,6 +52,7 @@ public class ListCurrency extends Fragment implements CurrencySelectionListener{
         currencyArrayList.add(new Currency("Euro", "EUR"));
         currencyArrayList.add(new Currency("Canada", "CAD"));
         currencyArrayList.add(new Currency("Gourde", "HTG"));
+        currencyArrayList.add(new Currency("Pound Sterling", "GBP"));
 
         CurrencyAdapter currencyAdapter = new CurrencyAdapter(currencyArrayList, getContext());
 
